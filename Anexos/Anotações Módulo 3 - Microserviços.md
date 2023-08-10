@@ -110,7 +110,7 @@
 
 - Edge pattern: Gateway específico para determinados clientes. Foco na real necessidade do solicitante.
 
-### 4.0 Lidando com dados
+#### 4.0 Lidando com dados
 
 - Tipos de organização:
 
@@ -132,7 +132,7 @@
 
     - Tecnologias como mensagerias e serviços de stream de dados tem relação direta com eventos assíncronos.
 
-### 5.0 Operações
+#### 5.0 Operações
 
 - Agregação de logs: Log de dados é uma expressão utilizada para descrever o processo de registro de eventos relevantes num sistema computacional.
 
@@ -145,3 +145,176 @@
     - Entenda: Enquanto logs precisam de desenvolvimento, métricas só precisam de instrumentação.
 
     - Baseie as visualizações de status com dashboards para ter uma visão de alto nível. Isso facilita a tomada de decisão e visualização do ambiente e sistema como um todo.
+
+### Microserviços: explorando os conceitos
+
+#### 1.0 Arquitetando microsserviços
+
+- Composição de microsserviços: APIs, Databases, Tarefas, Processadores de mensagens (cada um em um servidor).
+
+    - Uma máquina (servidor) pode ser considerada um componente. Várias aplicações em uma mesma máquina podem ser vários componentes. Um serviço de apoio (como banco de dados ou fila de mensageria) pode ser um componente. Qualquer coisa que efetivamente componha o serviço, é um componente.
+
+    ![Imaagem de exemplificação da composição de microsserviços](/Anexos/img/composicaoMicrosservicos.png)
+
+- Contrato de microsserviços: Comunicação entre APIs
+
+    - Faça modificações aditivas
+
+        - Novos endpoints
+        - Novos campos
+
+    - Versionamento de APIs
+
+        - Comunicação com o cliente, pra quando versionar, sinalizar o tempo de manutenção de ambas as versões e quando a versão antiga cairá.
+
+    - Mantenha equipes separadas, donas de cada serviço
+
+- Identificando barreiras entre microssserviços:
+
+    - Cada serviço possui funcionalidades específicas.
+
+    - DDD pode ajudar a entender melhor cada barreira, com a separação dos domínios (Bounded Contexts).
+
+    - Em uma arquitetura monolítica, cada módulo pode ser um ponto de partida para entender melhor o que seria cada serviço.
+
+    - Evite segmentar serviços apenas por cada substantivo do sistema em microsserviços. Entenda melhor o domínio. Para isso sempre é importante começar aplicações de forma monolítica.
+
+    - "Pense antes de implementar"
+
+    - [Arquitetura de Software](https://dias.dev/2020-04-10-o-que-e-arquitetura/)
+
+#### 2.0 Criação de serviços
+
+- Cuidando do host:
+
+    - Entenda sobre SOs (Sistemas Operacionais), preferencialmente Linux.
+
+    - Máquinas Virtuais geralmente são onde ficam os serviços. Importante de entender que o custo de processamento é alto para manter Máquinas Virtuais.
+
+    - Outro local onde podem ficar hospedados os serviços são os sistemas em cloud. Manter um ambiente de produção em cloud é relativamente simples hoje.
+
+    - Muito utilizado hoje é o container, para subir nos hosts. É a opção mais recomendada.
+
+- Criação de novo serviço:
+
+    - Precisamos configurar o repositório para versionamento. (Vários repositórios ou monorepo?)
+
+    - Precisamos pensar no formato do CI/CD da forma mais automatizada possível. Pensar em testes e padrões a serem seguidos é de suma importância.
+
+- Definindo um padrão:
+
+    - Criação de logs: Formato e Destino
+    - Verificação de status
+    - Monitoramento de métricas
+    - Busca por configuração e secrets
+    - Projeto esqueleto, com tudo que qualquer microsserviço precisa
+    - Scripts de build, mínimo de código necessário
+    - Ter uma imagem docker base que conterão os microsserviços
+    - Ter uma configuração base de um orquestrador de containers
+
+#### 3.0 Como se comunicar
+
+- Comunicação síncrona: Comunicação que espera uma resposta.
+
+    - Como se comunicar de forma síncrona? HTTP, gRPC, Protocolos personalizados.
+
+- Comunicação assíncrona: Comunicação que NÃO precisa esperar por uma resposta.
+
+    - Como se comunicar de forma assíncrona? CQRS e Eventos
+
+- Lidando com falhas:
+
+    - Formas de tratar problemas na comunicação síncrona:
+
+        - Circuit Breaker (Utilizando proxy)
+        - Cache
+
+    - Formas de tratar problemas na comunicação assíncrona:
+
+        - Retry
+        - Retry com back-off
+        - Fila de mensagens mortas
+        - Mensagens devem poder ser lidas fora de ordem
+        - Mensagens devem poder ser recebidas repetidamente(idempotência)
+
+- Service Discovery:
+
+    - Como um serviço pode encontrar outro? 
+
+        - DNS em redes privadas (kubernetes, docker compose, ngix)
+
+#### 4.0 Segurança de serviços
+
+- Visão geral de segurança web:
+
+    - Segurança no transporte: HTTPS
+
+    - Segurança no repouso: Criptografia (Em disco, BD cifrados, Em back-ups), Anonimização
+
+    - Hashs: 
+
+        -  Argon2 é uma função de hash de senhas ganhadora de diversos prêmios. É uma das mais recomendadas para armazenamento de senhas cifradas.
+
+        -  Md5 é um algoritmo de hash muito utilizado para verificar integridade de arquivos transferidos na rede, por exemplo, ou após serem transferidos entre dispositivos para backup.
+
+- Autenticação e autorização: Cada requisição deve informar quem é o cliente. E nossa aplicação define a permissão.
+
+    - Formas de autenticação: Basic HTTP, [Tokens (JWT)](https://youtu.be/B-7e-ZpIWAs), OAuth, OpenID Connect
+
+    - Formas de autorização: ACL(Access control list), RBAC(Role-based access control), On behalf of
+
+- Segurança na rede:
+
+    - Colocar os serviços em redes virtuais
+
+    - Utilizar firewall antes de chegar na API Gateway
+
+    - Utilizar lista de IPs que permitem conexão com determinados seviços
+
+- Defense in Depth: Defesa em profundidade é um conceito usado em segurança da informação em que várias camadas de controles de segurança são colocadas em um sistema de tecnologia da informação.
+
+    - Estude as ferramentas dos atacantes (hackers)
+
+    - Tenha uma equipe de infosec e execute pentests
+
+    - Automatize verificações de segurança. Faça requisições com certificados inválidos, usuários não autorizados (para garantir integridade)
+
+    - Tenha ferramentas para monitorar ataques em tempo real
+
+    - Tenha logs e audite sistemas com frequência
+
+#### 5.0 Lidando com Deploy
+
+- Um monolito pode ser entregeu de forma manual. Mas quando se trata de microsserviços se torna impossível, pois a complexidade é muito grande para esse processo.
+
+    - Para isso é importante um release pipeline (uma linha de processos executaods para gerar entrega de um projeto).
+
+- Ambientes de execução: O microsserviço pode ser implantado em vários ambientes
+
+    - Tipos de ambientes:
+
+        - Desenvolvimento: Local onde é criado / alterado o serviço pelos desenvolvedores
+
+        - Staging/QA: Local onde são feitos os testes, contendo testes configuração para testes de performance e smoke testes
+
+        - Homologação: Local onde clientes ou um PO pode testar o sistema
+
+        - Produção: Local onde o sistema de fato está 
+
+    - Configurações de ambientes e aplicações:
+
+        - Ambiente: Configurar quantidade de recursos e localização
+
+        - Aplicação: Configurar logs(por ambiente), dependências(por ambiente) e dados de acesso(por ambiente)
+
+- Estratégias de deploy: É importante lembrar que nossa pipeline possa realizar a entrega e deploy de micorsserviços de forma isolada e não precisemos fazer o build de todos os serviços da aplicação.
+
+    - Arquivo distribuível(.exe, .war, .phar, .zip)
+    - Tag do git
+    - Imagem do container
+
+    - Estratégias de releases: Rolling upgrade, Blue-green, Feature toggle
+
+### Microserviços na prática: entendento a tomada de decisões
+
+#### 1.0 Boas-vindas à realidade
