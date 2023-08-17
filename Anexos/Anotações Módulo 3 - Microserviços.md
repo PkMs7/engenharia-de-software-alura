@@ -318,3 +318,62 @@
 ### Microserviços na prática: entendento a tomada de decisões
 
 #### 1.0 Boas-vindas à realidade
+
+- [Repositório da aplicação do curso](https://github.com/CViniciusSDias/alura-ms)
+
+Comando para clonar projeto - (vídeo)
+~~~
+
+git clone --recurse-submodules --remote-submodules git@github.com:CViniciusSDias/alura-ms
+
+~~~
+
+Comando para clonar projeto - (transcrição)
+~~~
+
+git clone --recursive https://github.com/CViniciusSDias/alura-ms
+
+~~~
+
+Comando para rodar o projeto - (transcrição)
+~~~
+
+docker-compose up --build
+
+~~~
+
+- Para configurar o email defina no docker-compose.yml
+
+    - Variáveis `GMAIL_USER` e `GMAIL_PASSWORD`
+
+#### 2.0 O início de tudo
+
+-  Dica: Para facilitação do trabalho com microsserviços, quanto mais padronizado melhor, restringindo as escolhas (Linguagens, Nuvem, Scripts).
+
+- [Submódulos](https://www.atlassian.com/git/tutorials/git-submodule) são ponteiros para commits.
+
+#### 3.0 Infraestrutura
+
+- Os [12 fatores](https://12factor.net/pt_br/) são um conjunto de princípios sobre organização de código, práticas de desenvolvimento, arquitetura e operações para construção de aplicações modernas.
+
+#### 4.0 Build e deploy
+
+- Build: Conceito de revisão do código para ver se o estilo de codificação está de acordo com a comunidade daquela linguagem, análise estática, erro de sintaxe.
+
+- [Jenkins](https://www.jenkins.io/), [Travis CI](https://www.travis-ci.com/) ou [GitHub Actions](https://github.com/features/actions): Ferramentas para criar uma pipeline para builds.
+
+- Prcessos como esse protegem a aplicação de deploys que possam quebrar o código na main.
+
+#### 5.0 Um pouco de código
+
+- [Screaming Architecture](https://medium.com/@danilo.arruda/o-que-%C3%A9-arquitetura-gritante-137bc45d621d)
+
+- [RabbitMQ](https://www.rabbitmq.com/tutorials/tutorial-three-php.html): Instruções para PHP
+
+#### 6.0 Front-end
+
+- O front pode ser único ou trabalhado de forma independente como serviços e times específicos.
+
+- Optimistic vs Pessimistic: Abordagem otimista (parte do princípio de que vai dar certo) e abordagem pessimista (parte do princípio que vai dar errado).
+
+- Microfrontends: é um estilo arquitetônico que separa uma aplicação de front em várias camadas menores, cada uma sendo responsável por um módulo específico da aplicação, normalmente separadas por domínios ou contextos de uso, permitindo assim, que diferentes times cuidem dessas funcionalidades de forma independente. (Cada tela pode ser feita com uma tecnologia específica)
