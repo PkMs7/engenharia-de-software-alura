@@ -10,11 +10,23 @@
 
 - Importância da visibilidade dos scripts de ambientes e configurações, para que todos entendam onde e o que está acontecendo.
 
-- [Algumas ferramentas de DevOps](ferramentasDevOps.png)
+- ![Algumas ferramentas de DevOps](/Anexos/img/ferramentasDevOps.png)
 
 ### DevSecOps
 
-- 
+- DevSecOps é a camada de segurança do DevOps.
+
+    ![DevSecOps](/Anexos/img/devSecOps.png)
+
+- Segurança a qualquer custo, mesmo que diminua a velocidade. Abaixo os pilares do DevSecOps:
+
+    - Segurança em primeiro lugar
+    - Automação é fundamental
+    - Velocidade
+    - Entrega rápida e contínua (CI/CD)
+    - Confiabilidade
+
+- Em resumo, a camada de segurança, na prática entra diretamente na pipeline, com checks (auditorias e scanners de vírus) de arquivos maliciosos antes de subir a aplicação, por exemplo.
 
 ## Conteúdo dos módulos de treinamento
 
