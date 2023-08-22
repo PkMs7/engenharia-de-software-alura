@@ -98,3 +98,115 @@
             ![Comando Git Rebase](/Anexos/img/Rebase.png)
 
 #### 3.0 Builds e testes automatizados
+
+- Dicas para testes automatizados:
+
+    - Fazem parte da construção
+    - Rodar antes do commit
+    - TDD pode ajudar
+    - Desempenho é importante
+    - Código testável é um código simples
+    - Devemos categorizar os testes (unidade, integração e funcionalidade)
+    - Rodar primeiramente testes rápidos (use smoke tests)
+    - Testes fazem parte do build
+    - Feedback sempre
+
+- Tipos de testes:
+
+    - Testes de unidade
+    - Testes de integração
+    - Testes funcionais
+
+    ![Exemplificação da pirâmide de testes](/Anexos/img/tiposDeTestes.png)
+
+    - Uma técnica utilizada é o Smoke Test, trata-se de uma seleção de testes que garantem que as funcionalidades mais importantes do sistema estejam operando corretamente.
+
+- Etapas do build:
+
+    - Clean -> Compile -> Uniti tests -> Static analysis -> Package software -> Integrate database...
+
+- Busque sempre automatizar builds
+
+    - Build a cada commit
+    - Tudo automatizado / silgle commando
+    - Build sem depender da IDE
+    - Tudo está no repositório (install scripts, env settings, build scripts, config files, database files, code)
+
+- Dicas de build rápido / feedback rápido:
+
+    - Otimize o build, métricas ajudam
+        - Verifique a fase de testes e analise o código
+        - Verifique a ordem dessas fases
+        - Verifique a infra do build system
+    - Use cache
+    - Use staged build/pipeline
+
+- Ferramentas de automação e construção, separado por linguagem/plataforma:
+
+    - Java: Ant, Maven, Gradle
+    - Front-end: Gulp, Grunt, Webpack
+    - .NET: MSBuild
+    - Ruby: Rake
+    - Kotlin: Gradle
+    - Clojure: Leiningen
+    - C/C++: CMake/Make
+    - PHP: Composer
+
+- E alguns frameworks famosos da área de teste:
+
+    - Selenium (automação do navegador)
+    - Cucumber (testes de aceitação)
+    - Postman e SoapUI (testes de API)
+    - JMeter (stress tests)
+    - JUnit, xUnit, PHPUnit (automação de testes)
+    - entre muitos outros frameworks e bibliotecas
+    
+- Para o configuration management e provisioning podemos mencionar:
+
+    - Ansible
+    - Puppet
+    - Chef
+    - Salt
+    - Terraform (cloud)
+
+#### 4.0 Mais feedbacks com builds contínuas
+
+- É importante que se tenha um local que faça testes completos, geralmente utilizado um servidor central pra isso, denominado CI Daemon.
+
+    - Exemplos de servidores de integração:
+
+        - Jenkins (https://jenkins.io/)
+        - GoCD (https://www.gocd.org/)
+        - Bamboo (https://www.atlassian.com/br/software/bamboo)
+        - Travis CI (https://travis-ci.org/)
+        - Team City (https://www.jetbrains.com/teamcity/)
+        - Circle CI (https://circleci.com/)
+        - Gitlab (https://about.gitlab.com/product/continuous-integration/)
+        - AWS Code Pipeline https://aws.amazon.com/codepipeline/
+        - Azure (https://azure.microsoft.com/pt-br/services/devops/server/)
+
+- O que fazer quando o build quebra?
+
+    - Como conceito principal da metodologia ágil, "software funcionando acima de documentação extensa", quando um build quebra, se torna uma PRIORIDADE DE TODA A EQUIPE ajustar (afinal agora nada mais pode ser commitado, e isso trava todos os commits posteriores). Corrigir bugs na hora.
+
+    - O servidor de integração contínua monitora o repositório de código:
+
+        - Ao detectar uma alteração, deve iniciar o build do projeto
+        - O build deve acontecer a cada novo commit
+        - O resultado do build deve ser publicado
+        - Os desenvolvedores devem ser notificados sobre o status do build
+
+    - Um build quebrado deve ser arrumado em no máximo 10 minutos, com prioridade máxima:
+        
+        - É responsabilidade de todos da equipe arrumar um build quebrado
+
+#### 5.0 Um pouco sobre a entrega contínua
+
+- Segundo o manifesto ágil a prioridade mais alta é deixar o cliente satisfeito, e isso é feito por meio de entrega contínua.
+
+- RNF: Deployability (quão fácil é de realizar o deploy de sua aplicação?)
+
+### Entrega Contínua: confiabilidade e qualidade na implantação de software
+
+#### 1.0 O que é Entrega Contínua?
+
