@@ -28,6 +28,8 @@
 
 - Em resumo, a camada de segurança, na prática entra diretamente na pipeline, com checks (auditorias e scanners de vírus) de arquivos maliciosos antes de subir a aplicação, por exemplo.
 
+### 
+
 ## Conteúdo dos módulos de treinamento
 
 ### Integração Contínua: mais qualidade e menos risco no desenvolvimento
@@ -210,3 +212,100 @@
 
 #### 1.0 O que é Entrega Contínua?
 
+- [Artigos Alura sobre Entrega Contínua](https://cursos.alura.com.br/course/entrega-continua-confiabilidade-qualidade/task/72281)
+
+- É importante entender que deploys demorados **aumentam** o risco de problemas de integração.
+
+    - Uma dica para deploys é que eles precisam ser frequentes e **automatizados**.
+
+- ![Dicas de Livros](/Anexos/img/LivrosEntregaContinua.png)
+
+- Antipaterns (anti-padrão): Devem ser evitados
+
+    - Gerenciamento manual de ambientes: Cada ambiente precisa ser configurado e reconfigurado, e temos vários. Deveria ser fácil destruir o pipeline e reconstruí-lo com a mesma facilidade. Se etapas que já são complexas forem executadas manualmente teremos a presença de erros e inconsistências. Há casos em que o deploy funcionou em ambiente de homologação, mas não de produção, e é importante mencionar que são ambientes muito similares. **Regra de Ouro**: Todos os ambientes são tratados como código, versionados e criados de maneira automatizada.
+
+    - Deploy manual:Geralmente temos um manual que define as etapas de um deploy, mas geralmente a aplicação evolui e a documentação não é mais precisa e real. Há desenvolvedores que não sabem como o deploy é de fato realizado, afinal é um fazer delegado a poucas pessoas dentro da empresa em algumas configurações de equipe. Os deploys podem ser lentos e durarem horas ou dias. Nessa configuração teremos um deploy vagaroso, sujeito a erros e não confiável.
+    **Regra de ouro**: apenas duas tarefas devem ser executadas manualmente: escolher a versão do release e o clique em "deploy buttom.
+
+    - Deploy apenas no fim do ciclo: Por exemplo, ao desenvolveremos em aplicações estáveis e grandes focam em testes de criação de novas features e não interagem com a equipe de produção. Dessa maneira não sabemos se as novas features serão de fato funcionais e estáveis em produção.
+    **Regra de ouro**: deployment faz parte do desenvolvimento desde a primeira interação, todos definem um delivery team.
+
+### 2.0 Fundamentos
+
+- Definição de **Entrega contínua**: Entregar software com alta qualidade e grande valor, de maneira eficiente, rápida e confiável
+
+- Os princípios básicos da Entrega contínua são:
+
+    - Automatize
+    - Versione
+    - Repita
+    - Garanta qualidade
+    - Defina "done"(feito em produção)
+    - Crie um delivery team (todos os envolvidos com a entrega em produção como um todo)
+    - Use melhoria contínua(feedbacks contínuos)
+
+- Elementos da Entrega contínua:
+
+    - Cultura DevOps:
+        - feedback, colaboração, confiança, melhoria e aprendizagem contínua
+    - Patterns:
+        - deployment pipeline, deploy patterns (blue/gree, canary, feature toggle)
+    - Arquitetura
+        - Novas propriedades(testability, deployability), SOLID, Services, 12 Factor App
+
+### 3.0 Deployment pipeline
+
+- Estágios da Pipeline do deploy:
+
+    **Simplificado**
+    ![Estagios da Pipeline do Deploy](/Anexos/img/EstagiosPipelineDeploy.png)
+
+    **Detalhado**
+    ![Estagios da Pipeline do Deploy Detalhado](/Anexos/img/EstagiosPipelineDeployDetalhado.png)
+
+    **Diagrama**
+    ![Diagrama da Pipeline do Deploy](/Anexos/img/DiagramaPipelineDeploy.png)
+
+- Boas práticas:
+
+    - Pipeline deve ser a única forma de deploy
+    - Manter a pipeline a mais rápida possivel
+    - Bulid apenas uma vez
+    - Build independente do ambiente
+    - Ambientes iguais / semelhantes ao ambiente de produção
+    - Deploy para ambientes de maneira igual
+    - Ambientes temporários também podem ajudar em testes iniciais, pois não levam "sujeiras" de outros lugares
+
+### 4.0 Stages de commit e testes de aceitação
+
+- Commit Stage: É nesta etapa em que rodamos os testes de unidade (ou commit test), buildamos e disponibilizamos o artefato, e geramos relatórios de qualidade. **É ideal que esta etapa não demore mais do que 10 minutos**(Pois o desenvolvedor está aguardando os testes para poder seguir com suas demandas).
+
+    ![Commit Stage](/Anexos/img/CommitStage.png)
+
+- Stage de testes de aceitação: Nesta fase queremos testar a aplicação inteira e avaliar se ela preenche os **requisitos de negócio**. Esta é uma etapa essencial para chegar ao deploy contínuo e inserir a aplicação na fase de produção de maneira segura.
+
+    ![Testes De Aceitacao](/Anexos/img/TestesDeAceitacao.png)
+
+### 5.0 Stage de Homologação
+
+- Nesta fase os testes são executados pelo cliente, isto é, um usuário real do produto utiliza a interface do software, por isso essa etapa também é conhecida como "teste de aceitação".
+
+- Importante se atentar aos feedbacks. O cliente consegue usar o sistema de acordo com o esperado? Realiza as ações requisitadas? Apresenta dificuldade?
+
+- Teste de carga: Em paralelo a homologação, podemos executar o "Capacity Testing Stage". Os testes de carga buscam descobrir qual é a real capacidade do nosso sistema, ou seja, seu baseline. Conhecendo nosso sistema, devemos estabelecer metas claras e utilizar ferramentas de monitoração para descobrir as modificações arquiteturais que são necessárias.
+
+### 6.0 Estratégias de release
+
+- Formas de fazer com que o deploy seja feito com a maior segurança possível. Releases são incrementais.
+
+    ![Gold Release](/Anexos/img/GoldRelease.png)
+
+- Blue-Green Deployment:
+
+    - Tecnicamente, o deploy já foi realizado, mas temos duas versões: uma antiga(azul) e a nova(verde) que já está em ambiente de produção.
+
+    - Entre as versões há um roteador, então em algum momento podemos modificar o fluxo para o novo ambiente, a nova versão. O ambiente velho (blue) fica no ar ainda um bom tempo caso algum problema surja. As conexões que existiam para o azul ficarão disponíveis até que realmente apenas a versão verde esteja totalmente funcional.
+
+- Canary Release:
+
+    - Neste caso, as duas versões são utilizadas ao mesmo tempo, tanto azul quanto a verde, mas a nova versão não é acessada por todos os usuários. Uma parcela dos usuários que têm acesso a nova versão serão agentes de um teste.
