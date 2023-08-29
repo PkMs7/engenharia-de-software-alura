@@ -28,7 +28,42 @@
 
 - Em resumo, a camada de segurança, na prática entra diretamente na pipeline, com checks (auditorias e scanners de vírus) de arquivos maliciosos antes de subir a aplicação, por exemplo.
 
-### 
+### SRE (Site Reliability Engineering) - Engenharia de Confiabilidade de Sites
+
+- O embate entre Desenvolvedores e Infra acontecem no ponto de **"Confiabilidade"**. (Como você pode assegurar que seu software é confiável?)
+
+- Nesse cenário nasce o SRE, pra que se consiga deixar esse deploy mais confiável e seguro. (Foi desenvolvida essa disciplina pelo Google)
+
+- Ajuda a obter métricas para trazer informações de confiabilidade. Seu ponto forte é a **Observabilidade**.
+
+- Quatro sinais de ouro do SRE: Latência, Tráfego, Erros e Saturação.
+
+### Observabilidade
+
+- Monitoramento de sistemas distribuídos (problema).
+
+- Desafio: Agir proativamente ou reativamente em métricas e logs distribuídos.
+
+- Pilares da Observabilidade:
+
+    - Métricas
+    - Traços Distribuídos
+    - Logs
+
+- Uma ferramenta para exportar algumas métricas é o **Prometheus** (base de dados para métricas).
+
+- A ferramenta para visualizar essas métricas é o **Grafana** (importa a base de dados do Prometheus).
+
+- Uma ferramenta para trabalhar com Instrumentação Manual é a Jaeger. Podem ser plugadas na ferramenta:
+
+    - Service Mesh (Istio)
+    - Proxy (Envoy, Traefik, Kong)
+
+- Para trabalhar com logs pode-se usar: Sidecar, Logging agent instalado no host, Shell script. Uma ferramenta para ser utilizada é o Graylog.
+
+### 4 Golden Signals
+
+- Latência, Tráfego, Erros e Saturação. Esses sinais podem ser observados através do Grafana.
 
 ## Conteúdo dos módulos de treinamento
 
