@@ -65,6 +65,40 @@
 
 - Latência, Tráfego, Erros e Saturação. Esses sinais podem ser observados através do Grafana.
 
+### Monitoramento com Netdata
+
+    - Netdata é uma ferramenta de monitoramento (entendimento de como nossa aplicação e ambiente estão se comportando). É uma ferramenta open source.
+
+    - Requisitos (Máquina Linux)
+
+    - Comandos de instalação na documentação do site Netdata. [Clique Aqui](https://www.netdata.cloud)
+
+    - SLA: Métricas de contrato
+
+    - O Netdata já possui nativamente sistemas de alarmes em situações configuradas.
+
+### O que são Containers?
+
+    - Antes do container se utilizava a infraestrutura On-premise. [Link](https://en.wikipedia.org/wiki/On-premises_software)
+
+    - Em uma linha do tempo, a evolução dessa infraestrutura é a criação da Máquina Virtual (Servidor com N Sistemas Operacionais).
+
+    - Após a criação das Máquinas Virtuais foram criadas os Containers.
+
+    Diferença entre Container e Máquina Virtual
+
+    ![Imagem](/Anexos/img/ContainerxVM.png)
+
+### O que é Seerverless?
+
+    - Serverless é um modelo de desenvolvimento nativo em nuvem para criação e execução de aplicações sem o gerenciamento de servidores.
+
+    - É um paradigma de execução de código focado na não preocupação com servidores.
+    
+    - Alguns provedores desse serviço são: Amazon webserver, Microsoft Azure, Google Cloud.
+
+    - Componentes Serverless: Lambda, API Gateway, SQS, DynamoDB, SNS, S3.
+
 ## Conteúdo dos módulos de treinamento
 
 ### Integração Contínua: mais qualidade e menos risco no desenvolvimento
