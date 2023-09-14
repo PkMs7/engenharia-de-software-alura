@@ -2,9 +2,47 @@
 
 ## Conteúdo de artigos e Alura+
 
+### O que é Test Driven Development (TDD)?
 
+    - Test Driven Development: Escreva um teste falho, Faça o teste passar, Refatore. (Red, Green and Blue)
 
+    - Padrão para escrever um teste (AAA - Arrange, Act, Assert)
 
+### O que é Behavior Driven Development (BDD):
+
+    - Behavior Driven Development: Desenvolvimento que encoraja a colaboração entre desenvolvedores, setores de qualidade e pessoas não-técnicas ou de negócios num projeto de software.
+
+    - Fundamentos de Gherkin
+
+        ![Alt text](/Anexos/img/FundamentosGherkin.png)
+
+        Aplicação prática
+
+        ![Alt text](/Anexos/img/praticaBDD.png)
+
+### Entenda pirâmide de testes
+
+    - Quanto mais na base da pirâmide, mais rápido.
+
+        - Base: Teste de Unidade
+        - Meio: Teste de Integração
+        - Ponta: Teste de Ponta a Ponta
+
+### API: Testes de contrato
+
+    - Testes de contratos são feitos para garantir os resultados das APIs (Responses e Requests, Status code, Objetos do CRUD, validação dos endpoints) principalmente em novas versões, garantindo revisão do que já estava funcionando se mantém o mesmo comportamento após a atualização.
+
+### Cobertura de Código
+
+    -  Através dos relatórios de cobertura de código podemos saber quanto do nosso código foi executado, e quais linhas especificamente não foram executadas por nenhum de nossos testes. Isso nos permite monitorar e tomar alguma atitude caso muito de nosso código não esteja sendo executado por nenhum teste.
+
+### Testes de Mutação - Testando seus testes
+
+    - Teste de Mutação é uma técnica que permite detectar possíveis falhas em nosso código que não seriam cobertas por nossos testes. Ele é baseado na ideia de que se um programa funciona corretamente, então qualquer alteração no seu código-fonte deve causar uma falha em pelo menos um dos testes.
+
+    - Trata mudanças nas regras de negócio que não quebram os testes. Considera essas mudanças de código como "infecções". Com isso se consegue criar um novo teste para cobrir aquela situação.
+
+    - 
 
 ## Conteúdo dos módulos de treinamento
 
