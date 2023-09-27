@@ -174,4 +174,47 @@
 
 ### Extreme Programing: metodologia de desenvolvimento ágil de software
 
-#### 1.0 
+#### 1.0 O que XP resolve?
+
+    - Maior agilidade para entrega de valor com qualidade.
+
+#### 2.0 Entenda os valores
+
+    - O XP possui 5 valores:
+
+        - Comunicação: Mais clara possível.
+        - Simplicidade: Focar no que realmente importa e agregar mais valor.
+        - Feedback: Quanto mais cedo tivermos feedback mais cedo podemos agir e corrigir falhas.
+        - Coragem: As práticas devem dar a segurança para que apenas a coragem seja necessária para realizar melhorias no sistema.
+        - Respeito: Pessoas respeitadas se sentem valorizadas. Com esse valor os demais são entregues.
+
+#### 3.0 Gestão e Projeto
+
+    - Cliente presente: O cliente é o que fornece a visão de negócio, ele estar próximo é garantir a entrega que gera maior valor para ele.
+
+    - Time coeso: Indivíduos e interações mais que processos e ferramentas. O time precisa ser visto como uma unidade, sendo ele multidisciplinar. Um time deve possuir todas as competencias para entregar determinado projeto.
+
+    - Mantendo a sanidade: Todos são responsáveis pelo projeto!
+
+    - Foco no que importa: Focar no que agrega valor, pensando em melhoria contínua. Simplicidade é importante.
+
+#### 4.0 Planejando o trabalho
+
+    - User stories (Histórias do usuário): Descrevem requisitos mas não são os requisitos.
+        - Modelo 3C: Cartão(Onde escrever), Conversação(Requisito do cliente) e Confirmação(Critérios de aceite).
+
+    - Planejar a prioridade das histórias: Planning poker é uma ferramenta para priorizar User stories.
+
+    - Após priorizar, o objetivo é ter entregas contínuas, de valor, garantindo qualidade. Testes são importantes para validar a qualidade da entrega.
+
+#### 5.0 Práticas de codificação
+
+    - Padrões de codificação: Estabelecido e concordado pelo time.
+    - Testar antes: Test-Driven Development (Escrever um teste falho, Fazer o teste passar, Refatorar).
+    - Consistência: Integração contínua.
+
+#### 6.0 Melhorando e informando
+
+    - Refatoração: Sempre deixe o código mais limpo do que o encontrou.
+    - Comunicação com as pessoas sobre o status. Sempre todos precisam estar informados no que todos estão fazendo.
+    - Pair programing: Duas pessoas programando simultaneamente (Piloto e copiloto).
