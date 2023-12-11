@@ -72,7 +72,7 @@
 
     - 5. Identificando saídas: Identificar as saídas dados de cada evento, trazendo as alterações das próximas etapas de acordo com os dados de entrada.
 
-    - 6. Lei de conway: A lei de Conway é um ditado que afirma que as organizações projetam sistemas que espelham sua própria estrutura de comunicação (raias dos departamentos da empresa, onde as telas são importantes para cada setor).
+    - 6. Lei de Conway: A lei de Conway é um ditado que afirma que as organizações projetam sistemas que espelham sua própria estrutura de comunicação (raias dos departamentos da empresa, onde as telas são importantes para cada setor).
 
     - 7. Elaboração de cenários: Decisão de como os cenários vão interagir utilizando vários setores e usuários para revisão de como irão funcionar.
 
